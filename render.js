@@ -8,7 +8,7 @@ let x = (canvas.width / 2 ) - 20 ;
 let ballRadius = 10 ;
 let dx = -1.5 ;
 let dy = -2.4 ;
-
+let live = 3 ;
 //paddle
 let paddleHeight = 10 ;
 let paddleWidh = 75 ;
@@ -31,9 +31,14 @@ let bricks = [] ;
 
 for(let c = 0 ; c < brickColumnCount ; c++){
     bricks[c] = [] ;
-    for(let r = 0 ; r < brickRowCount ; r++){
+    for(let r = 0 ; r < brickRowCount +10  ; r++){
         bricks[c][r] = {x : 0 , y : 0 , status : 1} ;
     }
+}
+
+const zidou = () => {
+    brickRowCount++ ;
+    live-- ;
 }
 
 const drawBricks = () =>{
@@ -122,9 +127,19 @@ const checkWallCollision = () => {
             dy = -1.01*dy ;
         }
         else{
+            // zidou
+            y =  canvas.height - 50;
+            x = paddleX ;
+            dy = -dy ;
+            zidou() ;
+            if(live == 0){
             alert("GAME OVER");
             clearInterval(interval) ;
-            document.location.reload() ;
+            document.location.reload() ;    
+            }
+            //alert("GAME OVER");
+            //clearInterval(interval) ;
+            //document.location.reload() ;
         }
     }
 }

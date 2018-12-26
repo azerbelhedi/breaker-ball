@@ -6,7 +6,7 @@ let ctx = canvas.getContext("2d") ;
 let y = canvas.height / 2  ;
 let x = (canvas.width / 2 ) - 20 ;
 let ballRadius = 10 ;
-let dx = -0.8 ;
+let dx = -1.5 ;
 let dy = -2.4 ;
 
 //paddle
@@ -20,8 +20,8 @@ let leftPressed = false ;
 
 // bricks :
 let brickRowCount = 5 ;
-let brickColumnCount = 6 ;
-let brickWidh = 80 ;
+let brickColumnCount = 24 ;
+let brickWidh = 20 ;
 let brickHeight = 20 ;
 let brickPadding = 0 ;
 let brickOffsetTop = 0 ;
@@ -79,6 +79,10 @@ const keyDownHandler = (e) => {
     else if(e.key == "left" || e.key == "ArrowLeft"){
         leftPressed = true ;
     }
+    if(e.key == "s"){
+        //alert('now') ;
+        dy += 0.5 ;
+    }
 }
 
 const keyUpHandler = (e) => {
@@ -108,14 +112,14 @@ const drawBall = () => {
 
 const checkWallCollision = () => {
     if( ((y + dy - ballRadius) < 0 ) ){
-        dy = -dy ;
+        dy = -1.01*dy ;
     }
     if( ((x + dx - ballRadius) < 0 ) || (x + dx + ballRadius) > canvas.width ){
-        dx = -dx ;
+        dx = -1.01*dx ;
     }
     if( (y + dy + ballRadius) > canvas.height ){
         if(x + ballRadius > paddleX && x - ballRadius < (paddleX + paddleWidh) ){
-            dy = -dy ;
+            dy = -1.01*dy ;
         }
         else{
             alert("GAME OVER");

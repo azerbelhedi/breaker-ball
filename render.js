@@ -8,7 +8,7 @@ let x = (canvas.width / 2 ) - 20 ;
 let ballRadius = 10 ;
 let dx = -1.5 ;
 let dy = -2.4 ;
-let live = 3 ;
+let live = 10 ;
 //paddle
 let paddleHeight = 10 ;
 let paddleWidh = 75 ;
@@ -131,11 +131,13 @@ const checkWallCollision = () => {
             y =  canvas.height - 50;
             x = paddleX ;
             dy = -dy ;
-            zidou() ;
+            //zidou() ;
             if(live == 0){
-            alert("GAME OVER");
-            clearInterval(interval) ;
-            document.location.reload() ;    
+            //alert("GAME OVER");
+            //clearInterval(interval) ;
+            //document.location.reload() ;    
+            }else{
+                zidou() ;
             }
             //alert("GAME OVER");
             //clearInterval(interval) ;
